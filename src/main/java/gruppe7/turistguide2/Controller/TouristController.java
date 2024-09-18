@@ -41,15 +41,27 @@ public class TouristController {
 
     @PostMapping("/save")
 
+
+    }
+    @GetMapping("/{name}/edit")
+    public ResponseEntity<Tourist> editAttraction(@PathVariable String name) { // uden spørgsmålstegn
+        Tourist attraction = touristService.getAttractionbyName(name);
+        if (attraction != null) {
+            return new ResponseEntity<>(attraction, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
     @PostMapping("/update")
-
-
+    public ResponseEntity<Tourist> updateAttraction(@RequestBody Tourist updatedAttraction) {
+        try{
+            Tourist  updatedTourist = touristService.updateAttraction(updatedAttraction.getName(), updatedAttraction);
+            return new ResponseEntity<>(updatedTourist, HttpStatus.OK);
+        } catch (RuntimeException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
-    @PutMapping("/{name}/edit")
-    public ResponseEntity<Tourist> updateAttraction(@PathVariable String name, @RequestBody Tourist attraction) { // uden spørgsmålstegn
-        Tourist attraction2 = touristService.updateAttraction(attraction);
-        return new ResponseEntity<>(attraction2, HttpStatus.OK);
-    }
+
 
     @DeleteMapping("/delete/{name}")
     public ResponseEntity<Tourist> deleteAttraction(@RequestBody Tourist attraction) { // med spørgsmålstegn

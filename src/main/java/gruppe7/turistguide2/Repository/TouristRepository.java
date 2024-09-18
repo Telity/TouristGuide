@@ -16,10 +16,21 @@ public class TouristRepository {
         towns.add("København");
         towns.add("Paris");
         towns.add("Odense");
+        towns.add("Berlin");
+        towns.add("Montevideo");
+        towns.add("Luxembough");
+        towns.add("Longyearbyen");
+        return towns;
     }
 
     public List<String>getTags(){
-
+        getTags().add("Tårn");
+        getTags().add("Historisk");
+        getTags().add("Natur");
+        getTags().add("Eventyr");
+        getTags().add("Museum");
+        getTags().add("Figur");
+        return getTags();
     }
     private void populateAttractions() {
         attractions.add(new Tourist("Rundetårn","Højt rundt tårn i midten af København", "København" ,List.of("Tårn","Historisk","Museum")));
@@ -53,11 +64,14 @@ public class TouristRepository {
         return attraction;
     }
 
-    public Tourist deleteAttraction(Tourist attraction) {
-        attractions.remove(attraction);
-        return attraction;
+    public Tourist deleteAttraction(String name) {
+        for(int i = 0; i<attractions.size(); i++) {
+            Tourist attraction = attractions.get(i);
+            if (attraction.getName().equals(name)) {
+                attractions.remove(i);
+                return attraction;
+            }
+        }
+        return null;
     }
-
-
-
 }
