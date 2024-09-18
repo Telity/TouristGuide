@@ -4,10 +4,21 @@
   <meta charset="UTF-8">
   <title>Attraction Names </title>
   <link th:href = "@{../main.css}" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 
+
   <body>
-  <h1 th:text="${attraction.name}"></h1>
+  <header>
+    <h1 th:text="${attraction.name}"></h1>
+    <nav>
+      <a th:href="@{'/attractions'}">Forside</a>
+      <a th:href="@{'/attractions/tags'}">Tags</a>
+      <a href="#">Opdater</a>
+      <a href="#">Slet</a>
+      <a href="#">Tilføj Attraktion</a>
+    </nav>
+  </header>
   <p th:text="${attraction.description}"></p>
 
   <!-- Link til at se tags -->

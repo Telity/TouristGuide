@@ -3,12 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Attraction Names </title>
-    <link th:href = "@{../main.css}" rel="stylesheet">
+    <link th:href = "@{/main.css}" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
-
 <body>
 
-<h1> Tags </h1>
+<header>
+    <h1> Tags For Turistattraktion </h1>
+    <nav>
+        <a th:href="@{'/attractions'}">Forside</a>
+        <a href="#">Forside</a>
+        <a href="#">Opdater</a>
+        <a href="#">Slet</a>
+        <a href="#">Tilføj Attraktion</a>
+    </nav>
+</header>
+
 
 <ul>
     <li  th:each="tag : ${tags}" th:text="${tag}"></li>

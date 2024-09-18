@@ -4,10 +4,17 @@
     <meta charset="UTF-8">
     <title>Landing Page</title>
     <link th:href = "@{../main.css}" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body>
 <header>
 <h1>Turistattraktioner</h1>
+    <nav>
+        <a th:href="@{'/attractions/tags'}">Tags</a>
+        <a href="#">Opdater</a>
+        <a href="#">Slet</a>
+        <a href="#">Tilføj Attraktion</a>
+    </nav>
 </header>
 
 <table>
