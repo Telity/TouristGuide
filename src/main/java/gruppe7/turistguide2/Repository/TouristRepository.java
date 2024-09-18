@@ -8,14 +8,25 @@ import java.util.List;
 public class TouristRepository {
     private final List<Tourist> attractions = new ArrayList<>();
     private int id;
+    private final List<String> towns = new ArrayList<>();
     public TouristRepository(){
         populateAttractions();
     }
-    private void populateAttractions() {
-        attractions.add(new Tourist("Rundetårn","Højt tårn"));
-        attractions.add(new Tourist("Eiffel Tower", "Tower in paris"));
-        attractions.add(new Tourist("Lille havfrue","Figur"));
+    public List<String>getTown(){
+        towns.add("København");
+        towns.add("Paris");
+        towns.add("Odense");
     }
+
+    public List<String>getTags(){
+
+    }
+    private void populateAttractions() {
+        attractions.add(new Tourist("Rundetårn","Højt rundt tårn i midten af København", "København" ,List.of("Tårn","Historisk","Museum")));
+        attractions.add(new Tourist("Eiffel Tower", "Tower in paris","Paris", List.of("Tårn","Historisk","Natur")));
+        attractions.add(new Tourist("Lille havfrue","Kendt dansk figur baseret på H.C Andersens eventyr Den Lille Havfrue", "København",List.of("Eventyr","Figur")));
+    }
+
 
     public List<Tourist> getAllAttractions() {
         return attractions;
