@@ -1,0 +1,19 @@
+
+table {
+    width: 500px;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+td, th {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid black;
+    background-color: antiquewhite;
+}
+
+body {
+    min-height: 100vh;
+    width: auto;
+    text-align: center;
+}

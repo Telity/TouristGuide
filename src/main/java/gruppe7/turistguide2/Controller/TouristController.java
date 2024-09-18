@@ -5,11 +5,13 @@ import gruppe7.turistguide2.Service.TouristService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/attractions")
 public class TouristController {
 
     public final TouristService touristService;
@@ -19,31 +21,39 @@ public class TouristController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<Tourist>> getAllAttractions() {
-        List<Tourist> attractions = touristService.getAllAttractions();
-        return new ResponseEntity<>(attractions, HttpStatus.OK);
+    public String getAllAttractions(Model model) {
+        List<Tourist> allAttractions = touristService.getAllAttractions();
+        model.addAttribute("attractions", allAttractions);
+        return "attractionList";
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<Tourist> getAttraction(@PathVariable String name) {
+    public String getAttraction(@PathVariable("name") String name, Model model) {
         Tourist attraction = touristService.getAttractionbyName(name);
-        return new ResponseEntity<>(attraction, HttpStatus.OK);
+        model.addAttribute("attraction", attraction);
+        return "attractionNames";
     }
 
     @GetMapping("{name}/tags")
-
+    public String getAttractionTags(@PathVariable("name") String name, Model model) {
+        Tourist attraction = touristService.getAttractionbyName(name);
+        model.addAttribute("attraction", attraction);
+       /* model.addAttribute("tags", tags) */
+        return "tags";
+    }
 
     @PostMapping("/add")
     public ResponseEntity<Tourist> addAttraction(@RequestBody Tourist attraction) {
         Tourist  attraction1 = touristService.addAttraction(attraction);
         return new ResponseEntity<>(attraction1, HttpStatus.CREATED);
-
-    @PostMapping("/save")
-
-    @PostMapping("/update")
-
-
     }
+
+   // @PostMapping("/save")
+
+    //@PostMapping("/update")
+
+
+
     @PutMapping("/{name}/edit")
     public ResponseEntity<Tourist> updateAttraction(@PathVariable String name, @RequestBody Tourist attraction) { // uden spørgsmålstegn
         Tourist attraction2 = touristService.updateAttraction(attraction);

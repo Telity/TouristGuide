@@ -1,10 +1,12 @@
 package gruppe7.turistguide2.Repository;
 
 import gruppe7.turistguide2.Model.Tourist;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class TouristRepository {
     private final List<Tourist> attractions = new ArrayList<>();
     private int id;
@@ -30,6 +32,8 @@ public class TouristRepository {
         }
         return null;
     }
+
+
 
     public Tourist addAttraction(Tourist attraction) {
         attractions.add(attraction);

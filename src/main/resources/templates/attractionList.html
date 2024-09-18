@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Landing Page</title>
+    <link th:href = "@{../main.css}" rel="stylesheet">
 </head>
 <body>
+<header>
+<h1>Turistattraktioner</h1>
+</header>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Tags</th>
+    </tr>
+    </thead>
+
+<tbody>
+    <tr th:each="attraction : ${attractions}" >
+        <td>
+            <a th:href="@{'/attractions/' + ${attraction.name}}" th:text="${attraction.name}"></a>
+        </td>
+        <td>
+        <a th:text="${attraction.description}"></a>
+        </td>
+        <td>
+            <form th:action="@{'/attractions/' + ${attraction.name} + '/tags'}" method="GET">
+            <input type="submit" value="Tags">
+            </form>
+        </td>
+    </tr>
+</tbody>
+</table>
+
+<br>
+
+<input type="submit" value="Tilføj attraktion">
 
 </body>
 </html>
