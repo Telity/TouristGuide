@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Order Sandwich</title>
+    <title>Add Attraction</title>
 </head>
 <body>
-<h1>Order Your Sandwich</h1>
-<form action="#" th:action="@{/add}" th:object="${attraction}" method="post">
+<h1>Add Attraction</h1>
+<form action="#" th:action="@{save}" th:object="${attraction}" method="post">
     <div>
     <label>Name:</label>
     <input type="text" th:field="*{name}">
     </div>
     <div>
     <label>Description:</label>
-    <input id="descrip" type="text" th:field="*{description}">
+    <input id="description" type="text" th:field="*{description}">
     </div>
     <div>
     <label>Town:</label>

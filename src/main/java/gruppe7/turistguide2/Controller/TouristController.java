@@ -6,11 +6,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/attractions")
 public class TouristController {
 
     public final TouristService touristService;
@@ -31,27 +33,28 @@ public class TouristController {
         return new ResponseEntity<>(attraction, HttpStatus.OK);
     }
 
-    @GetMapping("{name}/tags")
+    //@GetMapping("{name}/tags")
 
 
     @GetMapping("/add")
     public String addAttraction(Model model) {
-        List<String> attractionTags = List.of("Child Friendly", "Free", "Art", "Museum","Nature");
+        List<String> attractionTags = List.of("Child Friendly", "Free", "Art", "Museum", "Nature");
+        Tourist attraction = new Tourist();
+        attraction.setTags(attractionTags);
         model.addAttribute("attractionTags", attractionTags);
-        model.addAttribute("attraction", new Tourist());
+        model.addAttribute("attraction", attraction);
         return "addAttraction";
-
+    }
     @PostMapping("/save")
     public String saveAttraction(@ModelAttribute Tourist attraction, Model model){
-        List<Tourist> attractions = touristService.getAllAttractions();
-        model.addAttribute("attractions", attractions);
+        model.addAttribute("attractions", touristService.AddAttractions(attraction));
         return "saveAttraction";
         }
 
-    @PostMapping("/update")
+    //@PostMapping("/update")
 
 
-    }
+    //}
     @PutMapping("/{name}/edit")
     public ResponseEntity<Tourist> updateAttraction(@PathVariable String name, @RequestBody Tourist attraction) { // uden spørgsmålstegn
         Tourist attraction2 = touristService.updateAttraction(attraction);
