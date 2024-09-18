@@ -33,6 +33,16 @@ public class TouristRepository {
         return null;
     }
 
+    public List<String> getTagsByName(String name) {
+        List<String> tags = new ArrayList<>();
+        for (Tourist touristAttraction : attractions) {
+            if (touristAttraction.getName().equals(name)) {
+                tags.addAll(touristAttraction.getTags());
+            }
+        }
+        return tags;
+    }
+
 
 
     public Tourist addAttraction(Tourist attraction) {

@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Tags</title>
+    <title>Attraction Names </title>
+    <link th:href = "@{../main.css}" rel="stylesheet">
 </head>
+
 <body>
 
 <h1> Tags </h1>
+
+<ul>
+    <li  th:each="tag : ${tags}" th:text="${tag}"></li>
+</ul>
+<br>
+
+<!-- Tilbage til listen over attraktioner -->
+<a href="/attractions">Tilbage til listen</a>
 
 </body>
 </html>

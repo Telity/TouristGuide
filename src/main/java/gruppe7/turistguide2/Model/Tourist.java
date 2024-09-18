@@ -23,6 +23,9 @@ public class Tourist {
     public String getDescription() {
         return description;
     }
+    public List<String> getTags(){
+        return tags;
+    }
     public void setDescription(String description) {
         this.description = description;
     }
