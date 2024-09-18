@@ -5,6 +5,7 @@ import gruppe7.turistguide2.Service.TouristService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,12 +34,19 @@ public class TouristController {
     @GetMapping("{name}/tags")
 
 
-    @PostMapping("/add")
-    public ResponseEntity<Tourist> addAttraction(@RequestBody Tourist attraction) {
-        Tourist  attraction1 = touristService.addAttraction(attraction);
-        return new ResponseEntity<>(attraction1, HttpStatus.CREATED);
+    @GetMapping("/add")
+    public String addAttraction(Model model) {
+        List<String> attractionTags = List.of("Child Friendly", "Free", "Art", "Museum","Nature");
+        model.addAttribute("attractionTags", attractionTags);
+        model.addAttribute("attraction", new Tourist());
+        return "addAttraction";
 
     @PostMapping("/save")
+    public String saveAttraction(@ModelAttribute Tourist attraction, Model model){
+        List<Tourist> attractions = touristService.getAllAttractions();
+        model.addAttribute("attractions", attractions);
+        return "saveAttraction";
+        }
 
     @PostMapping("/update")
 

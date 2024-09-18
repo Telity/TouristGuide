@@ -31,10 +31,6 @@ public class TouristRepository {
         return null;
     }
 
-    public Tourist addAttraction(Tourist attraction) {
-        attractions.add(attraction);
-        return attraction;
-    }
 
     public Tourist updateAttraction(Tourist attraction) {
         int index = attractions.indexOf(attraction);
