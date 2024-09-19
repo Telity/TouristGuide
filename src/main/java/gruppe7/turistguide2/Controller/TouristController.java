@@ -38,17 +38,18 @@ public class TouristController {
 
     @GetMapping("/add")
     public String addAttraction(Model model) {
+        //adding list with tags options
         List<String> attractionTags = List.of("Child Friendly", "Free", "Art", "Museum", "Nature");
+        //makes a new tourist that will get values from the html
         Tourist attraction = new Tourist();
-        attraction.setTags(attractionTags);
         model.addAttribute("attractionTags", attractionTags);
         model.addAttribute("attraction", attraction);
         return "addAttraction";
     }
     @PostMapping("/save")
-    public String saveAttraction(@ModelAttribute Tourist attraction, Model model){
-        model.addAttribute("attractions", touristService.AddAttractions(attraction));
-        return "saveAttraction";
+    public String saveAttraction(@ModelAttribute Tourist attraction){;
+        touristService.AddAttractions(attraction);
+        return "redirect:/attractions";
         }
 
     //@PostMapping("/update")

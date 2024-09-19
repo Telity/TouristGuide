@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Attractions</title>
+  <link rel="stylesheet" th:href="@{../addAttraction.css}">
 </head>
 <body>
 <h1>Attractions</h1>
@@ -14,9 +15,9 @@
   </tr>
   <tr th:each="attraction : ${attractions}">
     <td th:text="${attraction.name}"></td>
-    <td th:text="${attraction.description}"></td>
+    <td id="describe" th:text="${attraction.description}"></td>
     <td th:text="${attraction.town}"></td>
-    <td th:text="${attraction.tags}"></td>
+    <td id="tags" th:text="${attraction.tags}"></td>
   </tr>
 </table>
 <a href="/attractions/add">Add Another Attractions</a>
