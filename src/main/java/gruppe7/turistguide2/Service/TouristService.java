@@ -26,17 +26,8 @@ public class TouristService {
         return touristRepository.addAttraction(attraction);
     }
 
-    public Tourist updateAttraction(String name, Tourist updatedAttraction) {
-        Tourist existingAttraction = touristRepository.getAttractionByName(name);
-        if(existingAttraction == null){
-            throw new RuntimeException("Attraction not found");
-        }
-
-        existingAttraction.setDescription(updatedAttraction.getDescription());
-        existingAttraction.setName(updatedAttraction.getTown());
-        existingAttraction.setTags(updatedAttraction.getTags());
-
-        return touristRepository.updateAttraction(existingAttraction);
+    public Tourist updateAttraction(Tourist attraction) {
+         return touristRepository.updateAttraction(attraction);
     }
 
     /*public Tourist deleteAttraction(Tourist attraction) {

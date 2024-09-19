@@ -12,16 +12,17 @@ public class TouristRepository {
     private int id;
     private final List<String> towns = new ArrayList<>();
     private final List<String> tagsList = new ArrayList<>();
+    private boolean initialized = false;
 
     public TouristRepository() {
-            populateAttractions();
-            populateTagsList();
-            populateTownList();
-        }
-        public List<String> getTownList () {
+        populateAttractions();
+        populateTagsList();
+        populateTownList();
+    }
+    public List<String> getTownList () {
             return towns;
-        }
-        private void populateTownList () {
+    }
+    private void populateTownList () {
             towns.add("København");
             towns.add("Paris");
             towns.add("Odense");
@@ -29,10 +30,10 @@ public class TouristRepository {
             towns.add("Montevideo");
             towns.add("Luxembough");
             towns.add("Longyearbyen");
-        }
+    }
 
         public List<String> getTagsList () {
-            return getTagsList();
+            return tagsList;
         }
         private void populateTagsList () {
             tagsList.add("Tårn");
@@ -79,10 +80,19 @@ public class TouristRepository {
             return attraction;
         }
 
-        public Tourist updateAttraction (Tourist attraction){
-            int index = attractions.indexOf(attraction);
+        public Tourist updateAttraction (Tourist updatedAttraction){
+            for(int i =0; i<attractions.size(); i++){
+                Tourist attraction = attractions.get(i);
+                if(attraction.getName().equals(updatedAttraction.getName())){
+                    attractions.set(i, updatedAttraction);
+                    return updatedAttraction;
+                }
+            }
+            return null;
+
+        /*int index = attractions.indexOf(attraction);
             attractions.set(index, attraction);
-            return attraction;
+            return attraction;*/
         }
 
         public Tourist deleteAttraction (String name){

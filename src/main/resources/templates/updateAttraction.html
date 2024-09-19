@@ -6,19 +6,14 @@
 </head>
 <body>
 <h1>Update Attraction</h1>
-<form th:action="@{update}" th:object="${attraction}" method="post">
-    <div>
+<form th:action="@{/attractions/update}" th:object="${attraction}" method="post">
         <p>Name: <span th:text="*{name}"></span></p>
-    </div>
-
-    <div>
         <label for="description">Description:</label>
         <input id="description" type="text" th:field="*{description}">
-    </div>
 
     <div>
     <label for="town">Town:</label>
-    <select id="town" th:field="*{town}">
+    <select id="town" name="town" th:field="*{town}">
         <option th:each="town : ${towns}" th:value="${town}" th:text="${town}"></option>
     </select>
     </div>
@@ -26,15 +21,15 @@
     <div>
         <h3>Select Tags</h3>
         <ul>
-            <li th:each="tag : ${attractionTags}">
+            <li th:each="tag : ${tags}">
                 <label>
-                    <input type="checkbox" th:value="${tag}" th:field="*{tags}"/> <span th:text="${tag}"></span>
+                    <input type="checkbox" th:value="${tag}" th:field="*{tags}" th:checked="${attraction.tags.contains(tag)}"/>
+                    <span th:text="${tag}"></span>
                 </label>
             </li>
         </ul>
     </div>
-
-    <button type="submit">Update</button>
+    <input type="submit" value="Update">
 </form>
 </body>
 </html>
