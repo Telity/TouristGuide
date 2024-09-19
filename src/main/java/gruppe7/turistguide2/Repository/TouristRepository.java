@@ -10,43 +10,49 @@ import java.util.List;
 public class TouristRepository {
     private final List<Tourist> attractions = new ArrayList<>();
     private int id;
+    private final List<String> towns = new ArrayList<>();
+    private final List<String> tagsList = new ArrayList<>();
+    private boolean initialized = false;
 
     public TouristRepository() {
         populateAttractions();
+        populateTagsList();
+        populateTownList();
+    }
+    public List<String> getTownList () {
+            return towns;
+    }
+    private void populateTownList () {
+            towns.add("København");
+            towns.add("Paris");
+            towns.add("Odense");
+            towns.add("Berlin");
+            towns.add("Montevideo");
+            towns.add("Luxembough");
+            towns.add("Longyearbyen");
     }
 
-    private void populateAttractions() {
-        attractions.add(new Tourist("Rundetårn", "Højt rundt tårn i midten af København", "København", List.of("Tårn", "Historisk", "Museum")));
-        attractions.add(new Tourist("Eiffel Tower", "Tower in paris", "Paris", List.of("Tårn", "Historisk", "Natur")));
-        attractions.add(new Tourist("Lille havfrue", "Kendt dansk figur baseret på H.C Andersens eventyr Den Lille Havfrue", "København", List.of("Eventyr", "Figur")));
-    }
+        public List<String> getTagsList () {
+            return tagsList;
+        }
+        private void populateTagsList () {
+            tagsList.add("Tårn");
+            tagsList.add("Historisk");
+            tagsList.add("Natur");
+            tagsList.add("Eventyr");
+            tagsList.add("Museum");
+            tagsList.add("Figur");
+        }
+        private void populateAttractions () {
+            attractions.add(new Tourist("Rundetårn", "Højt rundt tårn i midten af København", "København", List.of("Tårn", "Historisk", "Museum")));
+            attractions.add(new Tourist("Eiffel Tower", "Tower in paris","Paris", List.of("Tårn", "Historisk", "Natur")));
+            attractions.add(new Tourist("Lille havfrue", "Kendt dansk figur baseret på H.C Andersens eventyr Den Lille Havfrue","København", List.of("Eventyr", "Figur")));
+        }
 
 
-    public List<Tourist> getAllAttractions() {
-        return attractions;
-    }
-
-    public List<String> getTowns() {
-        List<String> towns = new ArrayList<>();
-        towns.add("København");
-        towns.add("Paris");
-        towns.add("Odense");
-        towns.add("Berlin");
-        towns.add("Montevideo");
-        towns.add("Luxembough");
-        towns.add("Longyearbyen");
-        return towns;
-    }
-
-    public List<String> getTags() {
-        getTags().add("Tårn");
-        getTags().add("Historisk");
-        getTags().add("Natur");
-        getTags().add("Eventyr");
-        getTags().add("Museum");
-        getTags().add("Figur");
-        return getTags();
-    }
+        public List<Tourist> getAllAttractions () {
+            return attractions;
+        }
 
 
     public Tourist getAttractionByName(String name) {

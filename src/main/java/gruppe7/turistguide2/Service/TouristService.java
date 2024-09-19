@@ -32,6 +32,14 @@ public class TouristService {
         return touristRepository.updateAttraction(attraction);
     }
 
+    /*public Tourist deleteAttraction(Tourist attraction) {
+        return touristRepository.deleteAttraction(attraction);
+    }*/
+
+    public List<String> getTagsList() {
+        return touristRepository.getTagsList();
+    }
+
     public void deleteAttraction(Tourist attraction) {
         touristRepository.deleteAttraction(attraction);
     }
@@ -42,5 +50,8 @@ public class TouristService {
     }
     public List<String> getTagsByName(String name){
         return touristRepository.getTagsByName(name);
+    }
+    public Object getTownList() {
+        return touristRepository.getTownList();
     }
 }

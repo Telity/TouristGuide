@@ -45,7 +45,7 @@ public class TouristController {
     @GetMapping("/add")
     public String addAttraction(Model model) {
         //adding list with tags options
-        List<String> attractionTags = List.of("Child Friendly", "Free", "Art", "Museum", "Nature");
+        List<String> attractionTags = touristService.getTagsList();
         //makes a new tourist that will get values from the html
         Tourist attraction = new Tourist();
         model.addAttribute("attractionTags", attractionTags);
@@ -73,6 +73,8 @@ public class TouristController {
     public String showUpdateForm(@PathVariable("name") String name, Model model) {
         Tourist attraction = touristService.getAttractionbyName(name);
         model.addAttribute("attraction", attraction);
+        model.addAttribute("tags",touristService.getTagsList());
+        model.addAttribute("towns",touristService.getTownList());
         return "updateAttractions"; // navnet på din HTML-skabelon
     }
 
