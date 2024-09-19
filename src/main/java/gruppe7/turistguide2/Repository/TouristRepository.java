@@ -75,11 +75,23 @@ public class TouristRepository {
     }
 
 
-    public Tourist updateAttraction(Tourist attraction) {
+    /*public Tourist updateAttraction(Tourist attraction) {
         int index = attractions.indexOf(attraction);
         attractions.set(index, attraction);
         return attraction;
+    }*/
+
+    public Tourist updateAttraction(Tourist updatedAttraction) {
+        for (int i = 0; i < attractions.size(); i++) {
+            Tourist attraction = attractions.get(i);
+            if (attraction.getName().equals(updatedAttraction.getName())) {
+                attractions.set(i, updatedAttraction); // Replace old attraction with updated one
+                return updatedAttraction;
+            }
+        }
+        return null; // Return null if the attraction was not found
     }
+
 
     public void deleteAttraction(Tourist attraction) {
         attractions.remove(attraction);

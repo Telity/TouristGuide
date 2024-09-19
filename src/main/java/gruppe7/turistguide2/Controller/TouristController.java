@@ -58,13 +58,6 @@ public class TouristController {
         return "redirect:/attractions";
         }
 
-    //@PostMapping("/update")
-
-    @PutMapping("/{name}/edit")
-    public ResponseEntity<Tourist> updateAttraction(@PathVariable String name, @RequestBody Tourist attraction) { // uden spørgsmålstegn
-        Tourist attraction2 = touristService.updateAttraction(attraction);
-        return new ResponseEntity<>(attraction2, HttpStatus.OK);
-    }
 
     @PostMapping("/{name}/delete")
     public String deleteAttraction(@PathVariable("name") String name) {
@@ -73,6 +66,21 @@ public class TouristController {
             touristService.deleteAttraction(attraction);
         }
         return "redirect:/attractions";
+    }
+
+    // Viser formular til at opdatere en attraktion
+    @GetMapping("/{name}/edit")
+    public String showUpdateForm(@PathVariable("name") String name, Model model) {
+        Tourist attraction = touristService.getAttractionbyName(name);
+        model.addAttribute("attraction", attraction);
+        return "updateAttractions"; // navnet på din HTML-skabelon
+    }
+
+    // Håndterer formularindsendelse for opdatering
+    @PostMapping("/update")
+    public String updateAttraction(@ModelAttribute Tourist attraction) {
+        touristService.updateAttraction(attraction);
+        return "redirect:/attractions"; // Omdiriger til listen over attraktioner
     }
 
 }
