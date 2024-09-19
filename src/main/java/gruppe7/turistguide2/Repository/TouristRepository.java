@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Repository
 public class TouristRepository {
     private final List<Tourist> attractions = new ArrayList<>();
@@ -13,11 +14,10 @@ public class TouristRepository {
     public TouristRepository() {
         populateAttractions();
     }
-
     private void populateAttractions() {
-        attractions.add(new Tourist("Rundetårn", "Højt tårn"));
+        attractions.add(new Tourist("Rundetårn","Højt tårn"));
         attractions.add(new Tourist("Eiffel Tower", "Tower in paris"));
-        attractions.add(new Tourist("Lille havfrue", "Figur"));
+        attractions.add(new Tourist("Lille havfrue","Figur"));
     }
 
     public List<Tourist> getAllAttractions() {
@@ -34,6 +34,22 @@ public class TouristRepository {
         return null;
     }
 
+    public List<String> getTagsByName(String name) {
+        List<String> tags = new ArrayList<>();
+        for (Tourist touristAttraction : attractions) {
+            if (touristAttraction.getName().equals(name)) {
+                tags.addAll(touristAttraction.getTags());
+            }
+        }
+        return tags;
+    }
+
+
+
+    public Tourist addAttraction(Tourist attraction) {
+        attractions.add(attraction);
+        return attraction;
+    }
 
     public Tourist updateAttraction(Tourist attraction) {
         int index = attractions.indexOf(attraction);
@@ -47,7 +63,7 @@ public class TouristRepository {
     }
 
 
-    public List<Tourist> addAttraction(Tourist attraction) {
+    public List<Tourist> addAttractionList(Tourist attraction) {
         attractions.add(attraction);
         return attractions;
     }

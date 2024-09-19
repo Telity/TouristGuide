@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Attraction Names </title>
+  <link th:href = "@{../main.css}" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+
+  <body>
+  <header>
+    <h1 th:text="${attraction.name}"></h1>
+    <nav>
+      <a th:href="@{'/attractions'}">Forside</a>
+      <a th:href="@{'/attractions/tags'}">Tags</a>
+      <a href="#">Opdater</a>
+      <a href="#">Slet</a>
+      <a href="#">Tilføj Attraktion</a>
+    </nav>
+  </header>
+  <p th:text="${attraction.description}"></p>
+
+  <!-- Link til at se tags -->
+  <a th:href="@{'/attractions/' + ${attraction.name} + '/tags'}">Se Tags</a>
+
+  <br>
+
+  <!-- Tilbage til listen over attraktioner -->
+  <a href="/attractions">Tilbage til listen</a>
+  </body>
+  </html>

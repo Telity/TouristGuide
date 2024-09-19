@@ -22,6 +22,10 @@ public class TouristService {
         return touristRepository.getAttractionByName(name);
     }
 
+    public Tourist addAttraction(Tourist attraction) {
+        return touristRepository.addAttraction(attraction);
+    }
+
     public Tourist updateAttraction(Tourist attraction) {
         return touristRepository.updateAttraction(attraction);
     }
@@ -30,8 +34,11 @@ public class TouristService {
         return touristRepository.deleteAttraction(attraction);
     }
 
-    public List<Tourist> AddAttractions(Tourist attraction) {
+    public List<Tourist> AddAttractionsList(Tourist attraction) {
         touristRepository.addAttraction(attraction);
         return touristRepository.getAllAttractions();
+    }
+    public List<String> getTagsByName(String name){
+        return touristRepository.getTagsByName(name);
     }
 }
