@@ -7,22 +7,31 @@
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 
-
   <body>
   <header>
     <h1 th:text="${attraction.name}"></h1>
     <nav>
       <a th:href="@{'/attractions'}">Forside</a>
-      <a th:href="@{'/attractions/tags'}">Tags</a>
       <a href="#">Opdater</a>
-      <a href="#">Slet</a>
-      <a href="#">Tilføj Attraktion</a>
+      <a th:href="@{'/attractions/add'}">Tilføj Attraktion</a>
     </nav>
   </header>
-  <p th:text="${attraction.description}"></p>
 
-  <!-- Link til at se tags -->
-  <a th:href="@{'/attractions/' + ${attraction.name} + '/tags'}">Se Tags</a>
+  <table>
+    <thead>
+    <tr>
+      <th> Beskrivelse </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="attraction : ${attraction}" >
+      <td>
+        <a th:text="${attraction.description}"></a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 
   <br>
 

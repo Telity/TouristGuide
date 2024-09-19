@@ -14,14 +14,38 @@ public class TouristRepository {
     public TouristRepository() {
         populateAttractions();
     }
+
     private void populateAttractions() {
-        attractions.add(new Tourist("Rundetårn","Højt tårn"));
-        attractions.add(new Tourist("Eiffel Tower", "Tower in paris"));
-        attractions.add(new Tourist("Lille havfrue","Figur"));
+        attractions.add(new Tourist("Rundetårn", "Højt rundt tårn i midten af København", "København", List.of("Tårn", "Historisk", "Museum")));
+        attractions.add(new Tourist("Eiffel Tower", "Tower in paris", "Paris", List.of("Tårn", "Historisk", "Natur")));
+        attractions.add(new Tourist("Lille havfrue", "Kendt dansk figur baseret på H.C Andersens eventyr Den Lille Havfrue", "København", List.of("Eventyr", "Figur")));
     }
+
 
     public List<Tourist> getAllAttractions() {
         return attractions;
+    }
+
+    public List<String> getTowns() {
+        List<String> towns = new ArrayList<>();
+        towns.add("København");
+        towns.add("Paris");
+        towns.add("Odense");
+        towns.add("Berlin");
+        towns.add("Montevideo");
+        towns.add("Luxembough");
+        towns.add("Longyearbyen");
+        return towns;
+    }
+
+    public List<String> getTags() {
+        getTags().add("Tårn");
+        getTags().add("Historisk");
+        getTags().add("Natur");
+        getTags().add("Eventyr");
+        getTags().add("Museum");
+        getTags().add("Figur");
+        return getTags();
     }
 
 
@@ -45,11 +69,11 @@ public class TouristRepository {
     }
 
 
-
     public Tourist addAttraction(Tourist attraction) {
         attractions.add(attraction);
         return attraction;
     }
+
 
     public Tourist updateAttraction(Tourist attraction) {
         int index = attractions.indexOf(attraction);
@@ -57,11 +81,9 @@ public class TouristRepository {
         return attraction;
     }
 
-    public Tourist deleteAttraction(Tourist attraction) {
+    public void deleteAttraction(Tourist attraction) {
         attractions.remove(attraction);
-        return attraction;
     }
-
 
     public List<Tourist> addAttractionList(Tourist attraction) {
         attractions.add(attraction);

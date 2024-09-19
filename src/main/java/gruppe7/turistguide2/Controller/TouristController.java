@@ -54,13 +54,11 @@ public class TouristController {
     }
     @PostMapping("/save")
     public String saveAttraction(@ModelAttribute Tourist attraction){;
-        touristService.AddAttractions(attraction);
+        touristService.AddAttractionsList(attraction);
         return "redirect:/attractions";
         }
 
     //@PostMapping("/update")
-
-
 
     @PutMapping("/{name}/edit")
     public ResponseEntity<Tourist> updateAttraction(@PathVariable String name, @RequestBody Tourist attraction) { // uden spørgsmålstegn
@@ -68,10 +66,13 @@ public class TouristController {
         return new ResponseEntity<>(attraction2, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{name}")
-    public ResponseEntity<Tourist> deleteAttraction(@RequestBody Tourist attraction) { // med spørgsmålstegn
-        Tourist attraction3 = touristService.deleteAttraction(attraction);
-        return new ResponseEntity<>(attraction3, HttpStatus.OK);
+    @PostMapping("/{name}/delete")
+    public String deleteAttraction(@PathVariable("name") String name) {
+        Tourist attraction = touristService.getAttractionbyName(name);
+        if(attraction != null) {
+            touristService.deleteAttraction(attraction);
+        }
+        return "redirect:/attractions";
     }
 
 }

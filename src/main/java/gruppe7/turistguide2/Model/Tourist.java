@@ -10,9 +10,11 @@ public class Tourist {
     private String town;
     private List<String> tags = new ArrayList<>();
 
-    public Tourist(String name, String description) {
+    public Tourist(String name, String description, String town, List<String> tags) {
         this.name = name;
         this.description = description;
+        this.town = town;
+        this.tags = tags;
     }
 
     public Tourist() {
@@ -44,9 +46,6 @@ public class Tourist {
     }
     public String getDescription() {
         return description;
-    }
-    public List<String> getTags(){
-        return tags;
     }
     public void setDescription(String description) {
         this.description = description;
