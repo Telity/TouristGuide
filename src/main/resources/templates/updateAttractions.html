@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Opdater Attraktion</title>
+    <link th:href = "@{../main.css}" rel="stylesheet">
+</head>
+<body>
+
+<h1>Opdater Attraktion</h1>
+
+<form th:action="@{/attractions/update}" th:object="${attraction}" method="post">
+    <label for="name">Navn:</label>
+    <input type="text" id="name" th:field="*{name}" readonly="readonly"/>
+
+    <label for="description">Beskrivelse:</label>
+    <input type="text" id="description" th:field="*{description}" />
+
+    <label for="tags">Tags:</label>
+    <input type="text" id="tags" th:field="*{tags}" />
+
+    <input type="submit" value="Opdater">
+</form>
+
+<br>
+
+<a href="/attractions">Tilbage til listen</a>
+
+</body>
+</html>

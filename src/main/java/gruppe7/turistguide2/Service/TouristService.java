@@ -4,9 +4,11 @@ import gruppe7.turistguide2.Model.Tourist;
 import gruppe7.turistguide2.Repository.TouristRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class TouristService {
+    private final List<Tourist> attractions = new ArrayList<>();
 
     public final TouristRepository touristRepository;
 
@@ -27,7 +29,7 @@ public class TouristService {
     }
 
     public Tourist updateAttraction(Tourist attraction) {
-         return touristRepository.updateAttraction(attraction);
+        return touristRepository.updateAttraction(attraction);
     }
 
     /*public Tourist deleteAttraction(Tourist attraction) {
@@ -36,6 +38,9 @@ public class TouristService {
 
     public List<String> getTagsList() {
         return touristRepository.getTagsList();
+    }
+    public void deleteAttraction(Tourist attraction) {
+        touristRepository.deleteAttraction(attraction);
     }
 
     public List<Tourist> AddAttractionsList(Tourist attraction) {

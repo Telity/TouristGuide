@@ -52,34 +52,37 @@ public class TouristController {
         model.addAttribute("attraction", attraction);
         return "addAttraction";
     }
-
     @PostMapping("/save")
-    public String saveAttraction(@ModelAttribute Tourist attraction) {
+    public String saveAttraction(@ModelAttribute Tourist attraction){;
         touristService.AddAttractionsList(attraction);
         return "redirect:/attractions";
-    }
-    @GetMapping("/{name}/edit")
-    public String editAttraction(@PathVariable("name")String name, Model model) { // uden spørgsmålstegn
+        }
+
+
+    @PostMapping("/{name}/delete")
+    public String deleteAttraction(@PathVariable("name") String name) {
         Tourist attraction = touristService.getAttractionbyName(name);
-        model.addAttribute("attraction",attraction);
-        model.addAttribute("tags",touristService.getTagsList());
-        model.addAttribute("towns",touristService.getTownList());
-        return "updateAttraction";
-    }
-    @PostMapping("/update")
-    public String updatesAttraction(@ModelAttribute Tourist attraction) {
-        touristService.updateAttraction(attraction);
+        if(attraction != null) {
+            touristService.deleteAttraction(attraction);
+        }
         return "redirect:/attractions";
     }
 
+    // Viser formular til at opdatere en attraktion
+    @GetMapping("/{name}/edit")
+    public String showUpdateForm(@PathVariable("name") String name, Model model) {
+        Tourist attraction = touristService.getAttractionbyName(name);
+        model.addAttribute("attraction", attraction);
+        model.addAttribute("tags",touristService.getTagsList());
+        model.addAttribute("towns",touristService.getTownList());
+        return "updateAttractions"; // navnet på din HTML-skabelon
+    }
 
-    /*@DeleteMapping("/delete/{name}")
-    public ResponseEntity<Tourist> deleteAttraction(@RequestBody Tourist attraction) { // med spørgsmålstegn
-        Tourist attraction3 = touristService.deleteAttraction(attraction);
-        return new ResponseEntity<>(attraction3, HttpStatus.OK);
-    }*/
+    // Håndterer formularindsendelse for opdatering
+    @PostMapping("/update")
+    public String updateAttraction(@ModelAttribute Tourist attraction) {
+        touristService.updateAttraction(attraction);
+        return "redirect:/attractions"; // Omdiriger til listen over attraktioner
+    }
 
 }
-
-
-

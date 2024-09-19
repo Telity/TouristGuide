@@ -10,10 +10,8 @@
 <header>
 <h1>Turistattraktioner</h1>
     <nav>
-        <a th:href="@{'/attractions/tags'}">Tags</a>
         <a href="#">Opdater</a>
-        <a href="#">Slet</a>
-        <a href="#">Tilføj Attraktion</a>
+        <a th:href="@{'/attractions/add'}">Tilføj Attraktion</a>
     </nav>
 </header>
 
@@ -24,7 +22,6 @@
         <th>Description</th>
         <th>By</th>
         <th class="column" colspan="3"> </th>
-
     </tr>
     </thead>
 
@@ -32,7 +29,7 @@
     <tr th:each="attraction : ${attractions}" >
 
         <td>
-            <a th:href="@{'/attractions/' + ${attraction.name}}" th:text="${attraction.name}"></a>
+            <a th:href="@{'/attractions/' + ${attraction.name}}" th:text="${attraction.name}"></a>   <!-- Navn -->
         </td>
 
         <td>
@@ -40,7 +37,7 @@
         </td>
 
         <td>
-
+            <a th:text="${attraction.town}"></a>
         </td>
 
         <td>
@@ -48,7 +45,9 @@
         </td>
 
         <td>
-            <input type="submit" value="Slet">
+            <form th:action="@{'/attractions/' + ${attraction.name} + '/delete'}" method="POST">
+                <input type="submit" value="Slet">
+            </form>
         </td>
 
         <td>
@@ -62,7 +61,9 @@
 
 <br>
 
+<form th:action="@{'/attractions' + '/add'}" method="GET">
 <input type="submit" value="Tilføj attraktion">
+</form>
 
 </body>
 </html>

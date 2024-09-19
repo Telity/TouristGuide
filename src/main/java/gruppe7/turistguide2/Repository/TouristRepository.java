@@ -55,62 +55,57 @@ public class TouristRepository {
         }
 
 
-        public Tourist getAttractionByName (String name){
-            for (Tourist touristAttraction : attractions) {
-                if (touristAttraction.getName().equals(name)) {
-                    return touristAttraction;
-                }
+    public Tourist getAttractionByName(String name) {
+        for (Tourist touristAttraction : attractions) {
+            if (touristAttraction.getName().equals(name)) {
+                return touristAttraction;
             }
-            return null;
         }
+        return null;
+    }
 
-        public List<String> getTagsByName (String name){
-            List<String> tags = new ArrayList<>();
-            for (Tourist touristAttraction : attractions) {
-                if (touristAttraction.getName().equals(name)) {
-                    tags.addAll(touristAttraction.getTags());
-                }
+    public List<String> getTagsByName(String name) {
+        List<String> tags = new ArrayList<>();
+        for (Tourist touristAttraction : attractions) {
+            if (touristAttraction.getName().equals(name)) {
+                tags.addAll(touristAttraction.getTags());
             }
-            return tags;
         }
+        return tags;
+    }
 
 
-        public Tourist addAttraction (Tourist attraction){
-            attractions.add(attraction);
-            return attraction;
-        }
+    public Tourist addAttraction(Tourist attraction) {
+        attractions.add(attraction);
+        return attraction;
+    }
 
-        public Tourist updateAttraction (Tourist updatedAttraction){
-            for(int i =0; i<attractions.size(); i++){
-                Tourist attraction = attractions.get(i);
-                if(attraction.getName().equals(updatedAttraction.getName())){
-                    attractions.set(i, updatedAttraction);
-                    return updatedAttraction;
-                }
+
+    /*public Tourist updateAttraction(Tourist attraction) {
+        int index = attractions.indexOf(attraction);
+        attractions.set(index, attraction);
+        return attraction;
+    }*/
+
+    public Tourist updateAttraction(Tourist updatedAttraction) {
+        for (int i = 0; i < attractions.size(); i++) {
+            Tourist attraction = attractions.get(i);
+            if (attraction.getName().equals(updatedAttraction.getName())) {
+                attractions.set(i, updatedAttraction); // Replace old attraction with updated one
+                return updatedAttraction;
             }
-            return null;
-
-        /*int index = attractions.indexOf(attraction);
-            attractions.set(index, attraction);
-            return attraction;*/
         }
-
-        public Tourist deleteAttraction (String name){
-            for (int i = 0; i < attractions.size(); i++) {
-                Tourist attraction = attractions.get(i);
-                if (attraction.getName().equals(name)) {
-                    attractions.remove(i);
-                    return attraction;
-                }
-            }
-            return null;
-        }
+        return null; // Return null if the attraction was not found
+    }
 
 
-        public List<Tourist> addAttractionList (Tourist attraction){
-            attractions.add(attraction);
-            return attractions;
-        }
+    public void deleteAttraction(Tourist attraction) {
+        attractions.remove(attraction);
+    }
+
+    public List<Tourist> addAttractionList(Tourist attraction) {
+        attractions.add(attraction);
+        return attractions;
+    }
 
 }
-
