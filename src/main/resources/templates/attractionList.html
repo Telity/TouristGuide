@@ -9,10 +9,6 @@
 <body>
 <header>
 <h1>Turistattraktioner</h1>
-    <nav>
-        <a href="#">Opdater</a>
-        <a th:href="@{'/attractions/add'}">Tilføj Attraktion</a>
-    </nav>
 </header>
 
 <table>
@@ -41,7 +37,9 @@
         </td>
 
         <td>
+            <form th:action="@{'/attractions/' + ${attraction.name} + '/edit'}"  method="GET">
             <input type="submit" value="Opdater">
+            </form>
         </td>
 
         <td>
