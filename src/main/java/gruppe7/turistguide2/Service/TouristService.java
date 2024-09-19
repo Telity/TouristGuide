@@ -2,9 +2,11 @@ package gruppe7.turistguide2.Service;
 
 import gruppe7.turistguide2.Model.Tourist;
 import gruppe7.turistguide2.Repository.TouristRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TouristService {
 
     public final TouristRepository touristRepository;
