@@ -16,8 +16,20 @@
     <label for="description">Beskrivelse:</label>
     <input type="text" id="description" th:field="*{description}" />
 
-    <label for="tags">Tags:</label>
-    <input type="text" id="tags" th:field="*{tags}" />
+    <label for="town">Town:</label>
+    <select id="town" name="town" th:field="*{town}">
+        <option th:each="town : ${towns}" th:value="${town}" th:text="${town}"></option>
+    </select>
+
+    <h3>Select Tags</h3>
+    <ul>
+        <li th:each="tag : ${tags}">
+            <label>
+                <input type="checkbox" th:value="${tag}" th:field="*{tags}" th:checked="${attraction.tags.contains(tag)}"/>
+                <span th:text="${tag}"></span>
+            </label>
+        </li>
+    </ul>
 
     <input type="submit" value="Opdater">
 </form>

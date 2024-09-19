@@ -39,6 +39,7 @@ public class TouristService {
     public List<String> getTagsList() {
         return touristRepository.getTagsList();
     }
+
     public void deleteAttraction(Tourist attraction) {
         touristRepository.deleteAttraction(attraction);
     }
