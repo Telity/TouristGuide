@@ -10,7 +10,8 @@ import java.util.List;
 public class TouristRepository {
     private final List<Tourist> attractions = new ArrayList<>();
     private int id;
-    public TouristRepository(){
+
+    public TouristRepository() {
         populateAttractions();
     }
     private void populateAttractions() {
@@ -62,5 +63,9 @@ public class TouristRepository {
     }
 
 
+    public List<Tourist> addAttractionList(Tourist attraction) {
+        attractions.add(attraction);
+        return attractions;
+    }
 
 }

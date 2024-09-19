@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,13 +42,21 @@ public class TouristController {
         return "tags";
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<Tourist> addAttraction(@RequestBody Tourist attraction) {
-        Tourist  attraction1 = touristService.addAttraction(attraction);
-        return new ResponseEntity<>(attraction1, HttpStatus.CREATED);
+    @GetMapping("/add")
+    public String addAttraction(Model model) {
+        //adding list with tags options
+        List<String> attractionTags = List.of("Child Friendly", "Free", "Art", "Museum", "Nature");
+        //makes a new tourist that will get values from the html
+        Tourist attraction = new Tourist();
+        model.addAttribute("attractionTags", attractionTags);
+        model.addAttribute("attraction", attraction);
+        return "addAttraction";
     }
-
-   // @PostMapping("/save")
+    @PostMapping("/save")
+    public String saveAttraction(@ModelAttribute Tourist attraction){;
+        touristService.AddAttractions(attraction);
+        return "redirect:/attractions";
+        }
 
     //@PostMapping("/update")
 
