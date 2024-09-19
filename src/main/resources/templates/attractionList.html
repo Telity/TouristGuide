@@ -1,10 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Landing Page</title>
+    <link th:href = "@{../main.css}" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body>
+<header>
+<h1>Turistattraktioner</h1>
+    <nav>
+        <a th:href="@{'/attractions/tags'}">Tags</a>
+        <a href="#">Opdater</a>
+        <a href="#">Slet</a>
+        <a href="#">Tilføj Attraktion</a>
+    </nav>
+</header>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>By</th>
+        <th class="column" colspan="3"> </th>
+
+    </tr>
+    </thead>
+
+<tbody>
+    <tr th:each="attraction : ${attractions}" >
+
+        <td>
+            <a th:href="@{'/attractions/' + ${attraction.name}}" th:text="${attraction.name}"></a>
+        </td>
+
+        <td>
+        <a th:text="${attraction.description}"></a>
+        </td>
+
+        <td>
+
+        </td>
+
+        <td>
+            <input type="submit" value="Opdater">
+        </td>
+
+        <td>
+            <input type="submit" value="Slet">
+        </td>
+
+        <td>
+            <form th:action="@{'/attractions/' + ${attraction.name} + '/tags'}" method="GET">
+            <input type="submit" value="Tags">
+            </form>
+        </td>
+    </tr>
+</tbody>
+</table>
+
+<br>
+
+<input type="submit" value="Tilføj attraktion">
 
 </body>
 </html>
