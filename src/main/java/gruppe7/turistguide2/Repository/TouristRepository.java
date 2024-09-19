@@ -10,6 +10,8 @@ import java.util.List;
 public class TouristRepository {
     private final List<Tourist> attractions = new ArrayList<>();
     private int id;
+
+    public TouristRepository() {
     private final List<String> towns = new ArrayList<>();
     private final List<String> tagsList = new ArrayList<>();
     public TouristRepository(){
@@ -63,6 +65,18 @@ public class TouristRepository {
         return null;
     }
 
+    public List<String> getTagsByName(String name) {
+        List<String> tags = new ArrayList<>();
+        for (Tourist touristAttraction : attractions) {
+            if (touristAttraction.getName().equals(name)) {
+                tags.addAll(touristAttraction.getTags());
+            }
+        }
+        return tags;
+    }
+
+
+
     public Tourist addAttraction(Tourist attraction) {
         attractions.add(attraction);
         return attraction;
@@ -84,4 +98,11 @@ public class TouristRepository {
         }
         return null;
     }
+
+
+    public List<Tourist> addAttractionList(Tourist attraction) {
+        attractions.add(attraction);
+        return attractions;
+    }
+
 }

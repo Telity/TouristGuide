@@ -16,14 +16,39 @@ public class Tourist {
         this.town = town;
         this.tags = tags;
     }
+
+    public Tourist() {
+
+    }
+
     public String getName() {
         return name;
     }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
     public String getDescription() {
         return description;
+    }
+    public List<String> getTags(){
+        return tags;
     }
     public void setDescription(String description) {
         this.description = description;

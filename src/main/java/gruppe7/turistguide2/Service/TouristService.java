@@ -5,7 +5,6 @@ import gruppe7.turistguide2.Repository.TouristRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 @Service
 public class TouristService {
 
@@ -48,6 +47,13 @@ public class TouristService {
         return touristRepository.getTagsList();
     }
 
+    public List<Tourist> AddAttractionsList(Tourist attraction) {
+        touristRepository.addAttraction(attraction);
+        return touristRepository.getAllAttractions();
+    }
+    public List<String> getTagsByName(String name){
+        return touristRepository.getTagsByName(name);
+    }
     public Object getTownList() {
         return touristRepository.getTownList();
     }
