@@ -2,35 +2,39 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Update Attraction</title>
 </head>
 <body>
-    <h1>Update Attraction</h1>
-    <form action="#" th:action="@{update}" th:object="${attraction}"method="post">
+<h1>Update Attraction</h1>
+<form th:action="@{update}" th:object="${attraction}" method="post">
     <div>
-        <p>Name:<span th:text="${attraction.name}"></span></p>
+        <p>Name: <span th:text="*{name}"></span></p>
+    </div>
 
-    </div>
-    <div>2
-        <label>Description:</label>
-        <input id="-description" type="text" th:field="{description}">
-    </div>
     <div>
-        <label>Town:</label>
-            <input type="text" th:field="{town}">
+        <label for="description">Description:</label>
+        <input id="description" type="text" th:field="*{description}">
+    </div>
 
-    </div>
     <div>
-        <h3> Select Tags </h3>
+    <label for="town">Town:</label>
+    <select id="town" th:field="*{town}">
+        <option th:each="town : ${towns}" th:value="${town}" th:text="${town}"></option>
+    </select>
+    </div>
+
+    <div>
+        <h3>Select Tags</h3>
         <ul>
-            <li th:each="tag:${attractionTags}">
-            <label>
-                <input type="checkbox" th:value="${tag}" th:field="{tags}"/>
-            </label>
+            <li th:each="tag : ${attractionTags}">
+                <label>
+                    <input type="checkbox" th:value="${tag}" th:field="*{tags}"/> <span th:text="${tag}"></span>
+                </label>
             </li>
         </ul>
     </div>
-        <button type="Update">Update Attraction</button>
-    </form>
+
+    <button type="submit">Update</button>
+</form>
 </body>
 </html>

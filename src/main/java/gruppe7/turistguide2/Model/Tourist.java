@@ -47,22 +47,7 @@ public class Tourist {
     public String getDescription() {
         return description;
     }
-    public List<String> getTags(){
-        return tags;
-    }
     public void setDescription(String description) {
         this.description = description;
-    }
-    public String getTown() {
-        return town;
-    }
-    public void setTown(String town) {
-        this.town = town;
-    }
-    public List<String> getTags() {
-        return tags;
-    }
-    public void setTags(List<String> tags) {
-        this.tags = tags;
     }
 }
