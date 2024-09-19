@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,6 +8,29 @@
     <h1>Update Attraction</h1>
     <form action="#" th:action="@{update}" th:object="${attraction}"method="post">
     <div>
+        <p>Name:<span th:text="${attraction.name}"></span></p>
 
+    </div>
+    <div>2
+        <label>Description:</label>
+        <input id="-description" type="text" th:field="{description}">
+    </div>
+    <div>
+        <label>Town:</label>
+            <input type="text" th:field="{town}">
+
+    </div>
+    <div>
+        <h3> Select Tags </h3>
+        <ul>
+            <li th:each="tag:${attractionTags}">
+            <label>
+                <input type="checkbox" th:value="${tag}" th:field="{tags}"/>
+            </label>
+            </li>
+        </ul>
+    </div>
+        <button type="Update">Update Attraction</button>
+    </form>
 </body>
 </html>

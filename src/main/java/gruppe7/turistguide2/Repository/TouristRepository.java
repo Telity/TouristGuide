@@ -11,10 +11,17 @@ public class TouristRepository {
     private final List<Tourist> attractions = new ArrayList<>();
     private int id;
     private final List<String> towns = new ArrayList<>();
+    private final List<String> tagsList = new ArrayList<>();
     public TouristRepository(){
         populateAttractions();
+        populateTagsList();
+        populateTownList();
     }
-    public List<String>getTown(){
+    public List<String>getTownList(){
+
+        return towns;
+    }
+    private void populateTownList(){
         towns.add("København");
         towns.add("Paris");
         towns.add("Odense");
@@ -22,17 +29,18 @@ public class TouristRepository {
         towns.add("Montevideo");
         towns.add("Luxembough");
         towns.add("Longyearbyen");
-        return towns;
     }
 
-    public List<String>getTags(){
-        getTags().add("Tårn");
-        getTags().add("Historisk");
-        getTags().add("Natur");
-        getTags().add("Eventyr");
-        getTags().add("Museum");
-        getTags().add("Figur");
-        return getTags();
+    public List<String>getTagsList(){
+        return getTagsList();
+    }
+    private void populateTagsList(){
+        tagsList.add("Tårn");
+        tagsList.add("Historisk");
+        tagsList.add("Natur");
+        tagsList.add("Eventyr");
+        tagsList.add("Museum");
+        tagsList.add("Figur");
     }
     private void populateAttractions() {
         attractions.add(new Tourist("Rundetårn","Højt rundt tårn i midten af København", "København" ,List.of("Tårn","Historisk","Museum")));

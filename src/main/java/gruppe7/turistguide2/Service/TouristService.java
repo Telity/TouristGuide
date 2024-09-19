@@ -40,8 +40,15 @@ public class TouristService {
         return touristRepository.updateAttraction(existingAttraction);
     }
 
-    public Tourist deleteAttraction(Tourist attraction) {
+    /*public Tourist deleteAttraction(Tourist attraction) {
         return touristRepository.deleteAttraction(attraction);
+    }*/
+
+    public List<String> getTagsList() {
+        return touristRepository.getTagsList();
     }
 
+    public Object getTownList() {
+        return touristRepository.getTownList();
+    }
 }
