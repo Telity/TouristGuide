@@ -20,14 +20,21 @@
     <thead>
     <tr>
       <th> Beskrivelse </th>
+      <th> By </th>
     </tr>
     </thead>
 
     <tbody>
     <tr th:each="attraction : ${attraction}" >
+
       <td>
         <a th:text="${attraction.description}"></a>
       </td>
+
+      <td>
+        <a th:text="${attraction.town}"></a>
+      </td>
+
     </tr>
     </tbody>
   </table>

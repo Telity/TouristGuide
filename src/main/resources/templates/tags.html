@@ -9,7 +9,7 @@
 <body>
 
 <header>
-    <h1> Tags For Attraction </h1>
+    <h1 th:text="'Tags For ' + ${name}"></h1>
     <nav>
         <a th:href="@{'/attractions'}">Forside</a>
         <a th:href="@{'/attractions/add'}">Tilføj Attraktion</a>
